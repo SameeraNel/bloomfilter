@@ -1,4 +1,4 @@
-package org.example;
+package org.example.helper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +23,6 @@ public class WebFileDataSetServiceImpl implements DataSetService {
 
             int i = 0;
             while ((inputLine = bufferedReader.readLine()) != null) {
-//                System.out.println(++i + " Retrieved word : " + inputLine);
                 dictionary.add(inputLine);
             }
             bufferedReader.close();
@@ -32,7 +31,6 @@ public class WebFileDataSetServiceImpl implements DataSetService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        System.out.println(" Dictionary size : " + dictionary.size());
         return dictionary;
     }
 }
