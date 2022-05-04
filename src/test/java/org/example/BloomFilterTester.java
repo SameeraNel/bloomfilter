@@ -13,43 +13,42 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BloomFilterTester {
-    private static DataSetService dataSetService;
     private static List<String> dataSet;
 
     @BeforeClass
     public static void init() throws IOException {
-        dataSetService = new WebFileDataSetServiceImpl();
+        final DataSetService dataSetService = new WebFileDataSetServiceImpl();
         dataSet = dataSetService.getDataSet();
     }
 
     @Test
     public void testForMissWithEmptyFilter() {
-        BloomFilter bloomFilter = BloomFilter.getBloomFilter();
-        int indexForWord = (int) (Math.random() * (dataSet.size() + 1));
-        String testWord = dataSet.get(indexForWord);
+        final BloomFilter bloomFilter = BloomFilter.getBloomFilter();
+        final int indexForWord = (int) (Math.random() * (dataSet.size() + 1));
+        final String testWord = dataSet.get(indexForWord);
         assertFalse(bloomFilter.containsPossibly(testWord));
     }
 
     @Test
     public void testForHitAfterAddingToFilter() {
-        BloomFilter bloomFilter = BloomFilter.getBloomFilter(dataSet.size());
-        int indexForWord = (int) (Math.random() * (dataSet.size() + 1));
-        String testWord = dataSet.get(indexForWord);
+        final BloomFilter bloomFilter = BloomFilter.getBloomFilter(dataSet.size());
+        final int indexForWord = (int) (Math.random() * (dataSet.size() + 1));
+        final String testWord = dataSet.get(indexForWord);
         bloomFilter.add(testWord);
         assertTrue(bloomFilter.containsPossibly(testWord));
     }
 
     @Test
     public void testForHitAfterAddingASetToFilter() {
-        BloomFilter bloomFilter = BloomFilter.getBloomFilter(dataSet);
-        int indexForWord = (int) (Math.random() * (dataSet.size() + 1));
-        String testWord = dataSet.get(indexForWord);
+        final BloomFilter bloomFilter = BloomFilter.getBloomFilter(dataSet);
+        final int indexForWord = (int) (Math.random() * (dataSet.size() + 1));
+        final String testWord = dataSet.get(indexForWord);
         assertTrue(bloomFilter.containsPossibly(testWord));
     }
 
     @Test
     public void testForAMissAndVerifyHitAfterAddingToFilter() {
-        BloomFilter bloomFilter = BloomFilter.getBloomFilter();
+        final BloomFilter bloomFilter = BloomFilter.getBloomFilter();
         final String testWord = UUID.randomUUID().toString();
         if (bloomFilter.containsPossibly(testWord)) {
             // False Positive, Retry.
