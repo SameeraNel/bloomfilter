@@ -27,7 +27,7 @@ Boh Math.abs() & unsigned right shift operators were considered and unsigned rig
 Bit map size was calculated based on the input dataset size/ number of algorithms used & an accuracy increasing factor. With the above, the filter was implemented to maintain an accuracylarger that or equal to 0.5.
 
 ## Remarks
-1. This is a specilied form of bloom filter supporting String based elements, but can be generalised to support object type with enhancements.
-2. Optional method added to support a data set passed as a list. This may not be a good practice when it comes to seperation of concerns.
-3. Using the 2nd approach of hashing strategy, it is possible to go for pedictable accuracy ratio. 
+1. This is a specialized form of bloom filter supporting String based elements, but can be generalised to support object type with enhancements.
+2. Optional method added to support a data set passed as a list.
+3. Using the 2nd approach of hashing strategy, it is possible to go for predictable accuracy ratio. 
 

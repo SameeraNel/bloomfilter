@@ -23,12 +23,6 @@
       <artifactId>guava</artifactId>
       <version>31.1-jre</version>
     </dependency>
-<!--    &lt;!&ndash; https://mvnrepository.com/artifact/commons-codec/commons-codec &ndash;&gt;-->
-<!--    <dependency>-->
-<!--      <groupId>commons-codec</groupId>-->
-<!--      <artifactId>commons-codec</artifactId>-->
-<!--      <version>1.15</version>-->
-<!--    </dependency>-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

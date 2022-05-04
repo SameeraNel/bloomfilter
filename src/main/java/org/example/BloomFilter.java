@@ -5,12 +5,9 @@ import com.google.common.hash.Hashing;
 
 import java.nio.charset.Charset;
 import java.util.BitSet;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 
-/**
- * Hello world!
- */
 public class BloomFilter {
 
     public static final HashFunction HASH_FUNCTION_ONE = Hashing.murmur3_128();
@@ -52,10 +49,10 @@ public class BloomFilter {
     /**
      * Get a bloom filter instance compatible for given dataset with an accuracy factor of larger than 0.5
      *
-     * @param dataAsASet - Size of the expected Dataset
+     * @param dataAsASet - Dataset as a HashSet
      * @return BloomFilter Instance
      */
-    public static BloomFilter getBloomFilter(HashSet<String> dataAsASet) {
+    public static BloomFilter getBloomFilter(List<String> dataAsASet) {
         if (dataAsASet != null && !dataAsASet.isEmpty()) {
             BloomFilter bloomFilter = new BloomFilter(dataAsASet.size());
             for (String key : dataAsASet) {
@@ -70,12 +67,10 @@ public class BloomFilter {
     private static int generateHashForKey(HashFunction hashFunction, String keyToHash) {
         int hash = hashFunction.newHasher().putString(keyToHash, Charset.defaultCharset()).hash().asInt();
         int positiveHash = hash >>> 1;
-//        System.out.print("Hash " + keyToHash + " -> " + positiveHash);
         return positiveHash;
     }
 
     private static int CalcFilterPositionForHash(int intHash, int filterSize) {
-        System.out.println(" -> " + intHash % filterSize);
         return intHash % filterSize;
     }
 
@@ -104,30 +99,6 @@ public class BloomFilter {
     private int getBitIndex(HashFunction hashFunction, String key) {
         return CalcFilterPositionForHash(generateHashForKey(hashFunction, key), filterSize);
     }
-
-//    /**
-//     * Enabled for testing
-//     * @return Number of bits set to true
-//     */
-//    protected int cardinality() {
-//        return bloomFilter.cardinality();
-//    }
-//
-//    /**
-//     * Enabled for testing
-//     * @return Bit content of the filter
-//     */
-//    protected String getContent() {
-//        return bloomFilter.toString();
-//    }
-//
-//    /**
-//     * Enabled for testing
-//     * @return get the size of the filter
-//     */
-//    protected int size() {
-//        return bloomFilter.size();
-//    }
 
     @Override
     public boolean equals(Object o) {
