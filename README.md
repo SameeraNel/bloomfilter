@@ -8,8 +8,8 @@ https://en.wikipedia.org/wiki/Bloom_filter
 ## key distribution using hashes
 
 Two approaches considered to increase the accuracy of the results,
-1. Use different algorithms indipendantly
-2. Use a base algorithm to generate a bash hash bits set and use bit manupulation to generate differnet hash bit sets
+1. Use different algorithms indipendantly and distribute bit indices
+2. Use a single algorithm to generate a bash hash bits set and use bit manupulation to generate differnet hash bit sets out of that
 
 Out of the above, first approach was considered.
 
@@ -21,4 +21,13 @@ Out of the above, first approach was considered.
 ## Maintain positive hash integers
 
 Boh Math.abs() & unsigned right shift operators were considered and unsigned right shift operator is used in the implementation.
+
+## Bit map size
+
+Bit map size was calculated based on the input dataset size/ number of algorithms used & an accuracy increasing factor. With the above, the filter was implemented to maintain an accuracylarger that or equal to 0.5.
+
+## Remarks
+1. This is a specilied form of bloom filter supporting String based elements, but can be generalised to support object type with enhancements.
+2. Optional method added to support a data set passed as a list. This may not be a good practice when it comes to seperation of concerns.
+3. Using the 2nd approach of hashing strategy, it is possible to go for pedictable accuracy ratio. 
 
